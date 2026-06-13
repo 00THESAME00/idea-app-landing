@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Idea App — Ваша следующая большая идея</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Lottie Web Player (CDN) -->
+  <script
+    src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"
+    defer
+  ></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =============================================
+       HERO SECTION
+  ============================================= -->
+  <section class="hero" aria-label="Главный экран">
+
+    <!-- Lottie logo animation -->
+    <div class="hero__lottie-wrap">
+      <lottie-player
+        src="./assets/logo.json"
+        background="transparent"
+        speed="1"
+        autoplay
+        mode="normal" 
+        aria-label="Логотип Idea App"
+        class="hero__lottie"
+      ></lottie-player>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="hero__headline">
+      Ваша следующая большая идея
+      <span class="hero__headline--accent">начинается здесь</span>
+    </h1>
+
+    <!-- Sub-headline / description -->
+    <p class="hero__sub">
+      Будьте первыми, кто получит доступ к Idea&nbsp;App в Google&nbsp;Play.
+      Оставьте почту, и мы сообщим о&nbsp;релизе.
+    </p>
+
+    <!-- Email form -->
+    <form class="hero__form" novalidate>
+      <div class="hero__input-wrap">
+        <!-- Email icon -->
+        <img
+          src="./assets/Change email.svg"
+          alt=""
+          aria-hidden="true"
+          class="hero__input-icon"
+        />
+        <input
+          type="email"
+          name="email"
+          id="hero-email"
+          class="hero__input"
+          placeholder="Введите свой email"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <!-- CTA button -->
+      <button type="submit" class="hero__btn">
+        Сообщить о релизе
+        <span class="hero__btn-arrow" aria-hidden="true">→</span>
+      </button>
+    </form>
+
+    <!-- Trust badge -->
+    <p class="hero__trust">
+      <img
+        src="./assets/Privacy.svg"
+        alt=""
+        aria-hidden="true"
+        class="hero__trust-icon"
+      />
+      Мы не передаём вашу почту третьим лицам
+    </p>
+
+  </section>
+
+  <!-- =============================================
+       FEATURES SECTION
+  ============================================= -->
+  <section class="features" aria-label="Возможности приложения">
+
+    <!-- Section header -->
+    <header class="features__header">
+      <h2 class="features__title">
+        что будет в приложении?
+        <img
+          src="./assets/fire.svg"
+          alt=""
+          aria-hidden="true"
+          class="features__fire"
+        />
+      </h2>
+    </header>
+
+    <!-- 2-col masonry-style card grid -->
+    <div class="features__grid">
+
+      <!-- Card 1: УМНЫЙ ИИ-АГЕНТ (left col, taller) -->
+      <article class="card card--icon-top" aria-label="Умный ИИ-Агент">
+        <div class="card__icon-wrap">
+          <img src="./assets/Vector.svg" alt="" aria-hidden="true" class="card__icon" />
+        </div>
+        <h3 class="card__title">УМНЫЙ ИИ&#8209;АГЕНТ</h3>
+        <p class="card__body">
+          Ваш персональный помощник, который структурирует хаотичные мысли
+          и помогает превратить «сырую» идею в готовый план действий.
+        </p>
+        <footer class="card__stats">
+          <span class="card__stat">
+            <svg class="card__stat-icon" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+              <path d="M10 1C5.5 1 1.73 3.89 1 7c.73 3.11 4.5 6 9 6s8.27-2.89 9-6c-.73-3.11-4.5-6-9-6Z" stroke="#fff" stroke-width="1.6"/>
+              <circle cx="10" cy="7" r="2.5" stroke="#fff" stroke-width="1.6"/>
+            </svg>
+            123
+          </span>
+          <span class="card__stat">
+            <svg class="card__stat-icon" viewBox="0 0 18 16" fill="none" aria-hidden="true">
+              <path d="M9 14.5S1 9.6 1 4.9A3.9 3.9 0 0 1 9 3.3 3.9 3.9 0 0 1 17 4.9C17 9.6 9 14.5 9 14.5Z" stroke="#fff" stroke-width="1.6"/>
+            </svg>
+            45
+          </span>
+        </footer>
+      </article>
+
+      <!-- Card 2: СЕЙФ ДЛЯ МЫСЛЕЙ (right col, has cover image) -->
+      <article class="card card--cover-top" aria-label="Сейф для мыслей">
+        <div class="card__cover">
+          <img src="./assets/image 17.svg" alt="Сейф для мыслей" class="card__cover-img" />
+        </div>
+        <div class="card__content">
+          <h3 class="card__title">СЕЙФ ДЛЯ МЫСЛЕЙ</h3>
+          <p class="card__body">
+            Записывайте всё, что приходит в голову, в любой момент.
+            Система умной сортировки поможет найти нужное за секунду.
+          </p>
+          <footer class="card__stats">
+            <span class="card__stat">
+              <svg class="card__stat-icon" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+                <path d="M10 1C5.5 1 1.73 3.89 1 7c.73 3.11 4.5 6 9 6s8.27-2.89 9-6c-.73-3.11-4.5-6-9-6Z" stroke="#fff" stroke-width="1.6"/>
+                <circle cx="10" cy="7" r="2.5" stroke="#fff" stroke-width="1.6"/>
+              </svg>
+              1,234
+            </span>
+            <span class="card__stat">
+              <svg class="card__stat-icon" viewBox="0 0 18 16" fill="none" aria-hidden="true">
+                <path d="M9 14.5S1 9.6 1 4.9A3.9 3.9 0 0 1 9 3.3 3.9 3.9 0 0 1 17 4.9C17 9.6 9 14.5 9 14.5Z" stroke="#fff" stroke-width="1.6"/>
+              </svg>
+              4,435
+            </span>
+          </footer>
+        </div>
+      </article>
+
+      <!-- Card 3: КОМЬЮНИТИ ТВОРЦОВ (left col, has cover image) -->
+      <article class="card card--cover-top" aria-label="Комьюнити творцов">
+        <div class="card__cover">
+          <img src="./assets/image 18.svg" alt="Комьюнити творцов" class="card__cover-img" />
+        </div>
+        <div class="card__content">
+          <h3 class="card__title">КОМЬЮНИТИ ТВОРЦОВ</h3>
+          <p class="card__body">
+            Делитесь идеями с единомышленниками, получайте обратную связь
+            и находите соавторов для своих проектов в защищённой среде.
+          </p>
+          <footer class="card__stats">
+            <span class="card__stat">
+              <svg class="card__stat-icon" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+                <path d="M10 1C5.5 1 1.73 3.89 1 7c.73 3.11 4.5 6 9 6s8.27-2.89 9-6c-.73-3.11-4.5-6-9-6Z" stroke="#fff" stroke-width="1.6"/>
+                <circle cx="10" cy="7" r="2.5" stroke="#fff" stroke-width="1.6"/>
+              </svg>
+              123
+            </span>
+            <span class="card__stat">
+              <svg class="card__stat-icon" viewBox="0 0 18 16" fill="none" aria-hidden="true">
+                <path d="M9 14.5S1 9.6 1 4.9A3.9 3.9 0 0 1 9 3.3 3.9 3.9 0 0 1 17 4.9C17 9.6 9 14.5 9 14.5Z" stroke="#fff" stroke-width="1.6"/>
+              </svg>
+              45
+            </span>
+          </footer>
+        </div>
+      </article>
+
+      <!-- Card 4: КОНТЕКСТНАЯ МОДЕРАЦИЯ (right col, icon-only) -->
+      <article class="card card--icon-top" aria-label="Контекстная модерация">
+        <div class="card__icon-wrap">
+          <img src="./assets/Vector.svg" alt="" aria-hidden="true" class="card__icon" />
+        </div>
+        <h3 class="card__title">КОНТЕКСТНАЯ МОДЕРАЦИЯ</h3>
+        <p class="card__body">
+          Модерация следит за качеством контента, чтобы вы всегда находились
+          в сообществе вдохновляющих и адекватных людей.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+</body>
+</html>

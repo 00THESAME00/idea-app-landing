@@ -1,0 +1,465 @@
+/* ==============================================
+   IDEA APP — LANDING PAGE STYLES
+   Mobile-first, base width: 393px
+   Fonts: Inter (Google Fonts)
+   Segoe UI falls back to system stack
+   ============================================== */
+
+/* ── Reset & Box Model ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Design Tokens ── */
+:root {
+  /* Palette */
+  --clr-bg-top:        #1B0C33;
+  --clr-bg-mid:        #000000;
+  --clr-accent-start:  #9373FC;
+  --clr-accent-end:    #5E3BC9;
+  --clr-border-input:  #5F5B78;
+  --clr-text:          #FFFFFF;
+  --clr-muted:         #9E9BAF;
+  --clr-placeholder:   #5F5A78;
+  --clr-sub:           #B8B8B8;
+
+  /* Card */
+  --clr-card-start:    #23212C;
+  --clr-card-end:      #191820;
+  --clr-card-border:   #1C1A23;
+
+  /* Input background */
+  --clr-input-bg-a:    rgba(30, 28, 38, 0.55);
+  --clr-input-bg-b:    rgba(20, 18, 32, 0.55);
+  --clr-input-shadow:  #291E48;
+
+  /* Typography */
+  --ff-inter:   'Inter', sans-serif;
+  --ff-segoe:   'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --page-px: 30px;   /* horizontal page padding matches Figma left: 30px */
+  --gap:     16px;   /* gap between grid cards */
+}
+
+/* ── Base ── */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--ff-inter);
+  color: var(--clr-text);
+  background: linear-gradient(180deg, var(--clr-bg-top) 0%, var(--clr-bg-mid) 50%);
+  min-height: 100vh;
+  /* Constrain to mobile-first reference width, centred on wider screens */
+  max-width: 480px;
+  margin-inline: auto;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Utility: purple gradient text ── */
+.gradient-text {
+  background: linear-gradient(90deg, var(--clr-accent-start), var(--clr-accent-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==============================================
+   HERO SECTION
+   ============================================== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 0 40px;
+  padding-inline: var(--page-px);
+  /* Deep violet-to-black gradient matching Figma Rectangle 136 */
+  background: linear-gradient(180deg, var(--clr-bg-top) 0%, var(--clr-bg-mid) 62.5%);
+}
+
+/* ── Lottie container ── */
+.hero__lottie-wrap {
+  width: 140px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 56px;
+  /* Glow matching Figma box-shadow on logo */
+  filter: drop-shadow(0px 1px 80px rgba(48, 29, 90, 0.95));
+}
+
+.hero__lottie {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Headline ── */
+.hero__headline {
+  margin-top: 36px;
+  font-family: var(--ff-inter);
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--clr-text);
+  max-width: 298px;
+}
+
+/* "начинается здесь" — purple gradient highlight */
+.hero__headline--accent {
+  display: block;
+  background: linear-gradient(90deg, var(--clr-accent-start) 0%, var(--clr-accent-end) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Sub-headline ── */
+.hero__sub {
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--clr-sub);
+  letter-spacing: -0.01em;
+  max-width: 285px;
+}
+
+/* ── Email form ── */
+.hero__form {
+  width: 100%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Input wrapper with icon */
+.hero__input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.hero__input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  /* Ensures the SVG colour is white if it's currentColor-based */
+  filter: brightness(0) invert(1);
+}
+
+.hero__input {
+  width: 100%;
+  height: 50px;
+  padding-left: 50px;
+  padding-right: 18px;
+  font-family: var(--ff-inter);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--clr-text);
+  /* Figma: dark glassmorphism background */
+  background: linear-gradient(90deg, var(--clr-input-bg-a) 0%, var(--clr-input-bg-b) 100%);
+  border: 1px solid var(--clr-border-input);
+  border-radius: 22px;
+  box-shadow: 0px 1px 16.5px -1px var(--clr-input-shadow);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.hero__input::placeholder {
+  color: var(--clr-placeholder);
+}
+
+.hero__input:focus {
+  border-color: var(--clr-accent-start);
+  box-shadow: 0px 1px 20px -1px rgba(147, 115, 252, 0.35);
+}
+
+/* ── CTA Button ── */
+.hero__btn {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--ff-inter);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--clr-text);
+  /* Figma: gradient 93.29deg, #9373FC → #5E3BC9 */
+  background: linear-gradient(93.29deg, var(--clr-accent-start) 47.14%, var(--clr-accent-end) 97.44%);
+  border: 1px solid #8566DD;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  letter-spacing: 0;
+}
+
+.hero__btn:hover {
+  opacity: 0.9;
+}
+
+.hero__btn:active {
+  transform: scale(0.98);
+}
+
+.hero__btn-arrow {
+  font-size: 18px;
+  line-height: 1;
+  /* Slight nudge to align the arrow vertically with the text */
+  margin-top: -1px;
+}
+
+/* ── Trust badge ── */
+.hero__trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--clr-muted);
+  text-align: center;
+}
+
+.hero__trust-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  filter: brightness(0) saturate(100%) invert(65%) sepia(5%) saturate(600%) hue-rotate(220deg) brightness(90%);
+}
+
+/* ==============================================
+   FEATURES SECTION
+   ============================================== */
+.features {
+  /* Pure black background matching Figma Rectangle 137 */
+  background: #000000;
+  padding-inline: var(--page-px);
+  padding-block: 40px 56px;
+}
+
+/* ── Section header ── */
+.features__header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.features__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.23;
+  color: var(--clr-text);
+}
+
+.features__fire {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ── Cards grid ──
+   2-column layout that mimics the masonry heights in the screenshot.
+   Left column is taller on row 1 (Card 1 vs Card 2),
+   Right column is taller on row 2 (Card 3 vs Card 4 is shorter).
+   We achieve this with a CSS Grid that has equal-width cols
+   and lets each card control its own height via content.
+   Cards in the same row align to the taller sibling naturally.
+   To exactly match the Figma "staggered" look we use
+   align-items: start so cards are NOT stretched.
+*/
+.features__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* ==============================================
+   FEATURE CARDS — shared base
+   ============================================== */
+.card {
+  background: linear-gradient(149.98deg, var(--clr-card-start) 0.17%, var(--clr-card-end) 99.83%);
+  border: 0.5px solid var(--clr-card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Card variant: icon at top (no cover image) ── */
+.card--icon-top {
+  padding: 18px 14px 16px;
+}
+
+/* ── Card variant: cover image at top ── */
+.card--cover-top {
+  /* No padding on the card itself — the image bleeds to edges */
+}
+
+.card__cover {
+  width: 100%;
+  aspect-ratio: 145 / 98; /* matches Figma 145.48 × 98.38 */
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card__cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px 14px 0 0;
+}
+
+/* Content area inside cover cards */
+.card__content {
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ── Card icon ── */
+.card__icon-wrap {
+  margin-bottom: 14px;
+}
+
+.card__icon {
+  width: 28px;
+  height: 28px;
+  /* Force white if SVG uses currentColor / black fill */
+  filter: brightness(0) invert(1);
+}
+
+/* ── Card title ── */
+.card__title {
+  font-family: var(--ff-segoe);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--clr-text);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+/* Bump font-size for icon-top cards (Figma shows 15px there) */
+.card--icon-top .card__title {
+  font-size: 15px;
+}
+
+/* ── Card body text ── */
+.card__body {
+  font-family: var(--ff-segoe);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 152%;
+  color: var(--clr-text);
+  letter-spacing: 0.01em;
+  flex: 1;
+}
+
+/* body text inside card--cover-top cards (lighter weight, matches Figma 500) */
+.card--cover-top .card__body {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+}
+
+/* ── Card stats row ── */
+.card__stats {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 0;
+}
+
+.card__stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Roboto', var(--ff-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: 0.04em;
+  color: var(--clr-text);
+}
+
+.card__stat-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* ==============================================
+   REDUCED MOTION
+   ============================================== */
+@media (prefers-reduced-motion: reduce) {
+  lottie-player {
+    display: none;
+  }
+
+  /* Show a static fallback image instead */
+  .hero__lottie-wrap::after {
+    content: '';
+    display: block;
+    width: 115px;
+    height: 162px;
+    background: url('./assets/logo-fallback.png') center / contain no-repeat;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==============================================
+   RESPONSIVE — wider screens
+   ============================================== */
+@media (min-width: 481px) {
+  body {
+    /* On tablet/desktop, show the phone-frame centred */
+    background: #0a0515;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  /* The inner page keeps the 393px mobile feel */
+  body > section {
+    max-width: 393px;
+    width: 393px;
+  }
+}
