@@ -1,11 +1,10 @@
 /* ==============================================
    IDEA APP — LANDING PAGE STYLES
    Mobile-first, base width: 393px
-   Fonts: Inter (Google Fonts)
-   Segoe UI falls back to system stack
+   Fonts: Inter only
    ============================================== */
 
-/* ── Reset & Box Model ── */
+/* ── Reset ── */
 *,
 *::before,
 *::after {
@@ -27,23 +26,30 @@
   --clr-placeholder:   #5F5A78;
   --clr-sub:           #B8B8B8;
 
-  /* Card */
+  /* Feature cards */
   --clr-card-start:    #23212C;
   --clr-card-end:      #191820;
   --clr-card-border:   #1C1A23;
 
-  /* Input background */
+  /* Input */
   --clr-input-bg-a:    rgba(30, 28, 38, 0.55);
   --clr-input-bg-b:    rgba(20, 18, 32, 0.55);
   --clr-input-shadow:  #291E48;
 
+  /* Problem cards */
+  --clr-pcard-bg:      #0D0E1A;
+  --clr-pcard-border:  #282638;
+
+  /* Clarity "after" column */
+  --clr-after-text:    #D7D4F4;
+
   /* Typography */
-  --ff-inter:   'Inter', sans-serif;
-  --ff-segoe:   'Segoe UI', system-ui, -apple-system, sans-serif;
+  --ff-inter:  'Inter', sans-serif;
+  --ff-segoe:  'Segoe UI', system-ui, -apple-system, sans-serif;
 
   /* Spacing */
-  --page-px: 30px;   /* horizontal page padding matches Figma left: 30px */
-  --gap:     16px;   /* gap between grid cards */
+  --page-px:   23px;
+  --gap:       16px;
 }
 
 /* ── Base ── */
@@ -57,7 +63,6 @@ body {
   color: var(--clr-text);
   background: linear-gradient(180deg, var(--clr-bg-top) 0%, var(--clr-bg-mid) 50%);
   min-height: 100vh;
-  /* Constrain to mobile-first reference width, centred on wider screens */
   max-width: 480px;
   margin-inline: auto;
   overflow-x: hidden;
@@ -68,47 +73,36 @@ img {
   max-width: 100%;
 }
 
-/* ── Utility: purple gradient text ── */
-.gradient-text {
-  background: linear-gradient(90deg, var(--clr-accent-start), var(--clr-accent-end));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+lottie-player {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* ==============================================
-   HERO SECTION
+   1. HERO
    ============================================== */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-block: 0 40px;
-  padding-inline: var(--page-px);
-  /* Deep violet-to-black gradient matching Figma Rectangle 136 */
+  padding-inline: 30px;
   background: linear-gradient(180deg, var(--clr-bg-top) 0%, var(--clr-bg-mid) 62.5%);
 }
 
-/* ── Lottie container ── */
 .hero__lottie-wrap {
-  width: 140px;
-  height: 180px;
+  width: 284px;
+  height: 365px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 56px;
-  /* Glow matching Figma box-shadow on logo */
-  filter: drop-shadow(0px 1px 80px rgba(48, 29, 90, 0.95));
+  filter: drop-shadow(0px 1px 100.9px #301D5A);
 }
 
-.hero__lottie {
-  width: 100%;
-  height: 100%;
-}
-
-/* ── Headline ── */
 .hero__headline {
-  margin-top: 36px;
+  margin-top: -40px;
   font-family: var(--ff-inter);
   font-weight: 700;
   font-size: 25px;
@@ -118,7 +112,6 @@ img {
   max-width: 298px;
 }
 
-/* "начинается здесь" — purple gradient highlight */
 .hero__headline--accent {
   display: block;
   background: linear-gradient(90deg, var(--clr-accent-start) 0%, var(--clr-accent-end) 100%);
@@ -127,7 +120,6 @@ img {
   background-clip: text;
 }
 
-/* ── Sub-headline ── */
 .hero__sub {
   margin-top: 16px;
   font-size: 15px;
@@ -139,7 +131,6 @@ img {
   max-width: 285px;
 }
 
-/* ── Email form ── */
 .hero__form {
   width: 100%;
   margin-top: 32px;
@@ -148,7 +139,6 @@ img {
   gap: 12px;
 }
 
-/* Input wrapper with icon */
 .hero__input-wrap {
   position: relative;
   width: 100%;
@@ -162,7 +152,6 @@ img {
   width: 20px;
   height: 20px;
   pointer-events: none;
-  /* Ensures the SVG colour is white if it's currentColor-based */
   filter: brightness(0) invert(1);
 }
 
@@ -176,7 +165,6 @@ img {
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--clr-text);
-  /* Figma: dark glassmorphism background */
   background: linear-gradient(90deg, var(--clr-input-bg-a) 0%, var(--clr-input-bg-b) 100%);
   border: 1px solid var(--clr-border-input);
   border-radius: 22px;
@@ -185,16 +173,13 @@ img {
   transition: border-color 0.2s ease;
 }
 
-.hero__input::placeholder {
-  color: var(--clr-placeholder);
-}
+.hero__input::placeholder { color: var(--clr-placeholder); }
 
 .hero__input:focus {
   border-color: var(--clr-accent-start);
   box-shadow: 0px 1px 20px -1px rgba(147, 115, 252, 0.35);
 }
 
-/* ── CTA Button ── */
 .hero__btn {
   width: 100%;
   height: 55px;
@@ -206,31 +191,22 @@ img {
   font-size: 16px;
   font-weight: 600;
   color: var(--clr-text);
-  /* Figma: gradient 93.29deg, #9373FC → #5E3BC9 */
   background: linear-gradient(93.29deg, var(--clr-accent-start) 47.14%, var(--clr-accent-end) 97.44%);
   border: 1px solid #8566DD;
   border-radius: 26px;
   cursor: pointer;
   transition: opacity 0.2s ease, transform 0.15s ease;
-  letter-spacing: 0;
 }
 
-.hero__btn:hover {
-  opacity: 0.9;
-}
-
-.hero__btn:active {
-  transform: scale(0.98);
-}
+.hero__btn:hover   { opacity: 0.9; }
+.hero__btn:active { transform: scale(0.98); }
 
 .hero__btn-arrow {
   font-size: 18px;
   line-height: 1;
-  /* Slight nudge to align the arrow vertically with the text */
   margin-top: -1px;
 }
 
-/* ── Trust badge ── */
 .hero__trust {
   display: flex;
   align-items: center;
@@ -239,7 +215,6 @@ img {
   margin-top: 14px;
   font-size: 12px;
   font-weight: 500;
-  line-height: 1.25;
   color: var(--clr-muted);
   text-align: center;
 }
@@ -248,20 +223,410 @@ img {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  filter: brightness(0) saturate(100%) invert(65%) sepia(5%) saturate(600%) hue-rotate(220deg) brightness(90%);
+  filter: brightness(0) saturate(100%) invert(65%) sepia(5%)
+          saturate(600%) hue-rotate(220deg) brightness(90%);
 }
 
 /* ==============================================
-   FEATURES SECTION
+   2. PROBLEMS
    ============================================== */
-.features {
-  /* Pure black background matching Figma Rectangle 137 */
+.problems {
   background: #000000;
   padding-inline: var(--page-px);
+  padding-block: 48px 52px;
+}
+
+.problems__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.problems__title {
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  text-align: center;
+  color: #FFFFFF;
+  flex: 1;
+  max-width: 230px;
+}
+
+.problems__deco {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.problems__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pcard {
+  background: var(--clr-pcard-bg);
+  border: 1px solid var(--clr-pcard-border);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(147, 115, 252, 0.05),
+    0 4px 32px 0 rgba(95, 59, 201, 0.10);
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pcard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 90px;
+  background: radial-gradient(ellipse at center top,
+    rgba(147, 115, 252, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pcard__icon {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+
+.pcard__title {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.pcard__body {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: -0.06em;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.pcard__footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Центрируем scatter внутри футера карточки */
+}
+
+/* Старые селекторы .pcard__close-svg и .pcard__close--lg полностью удалены */
+
+.pcard__scatter {
+  width: auto;
+  height: 58px;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+/* ==============================================
+   3. CLARITY
+   ============================================== */
+.clarity {
+  background: #000000;
+  padding-block: 52px 0;
+}
+
+.clarity__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  padding-inline: 30px;
+  margin-bottom: 24px;
+}
+
+.clarity__title {
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  text-align: center;
+  color: #FFFFFF;
+  flex: 1;
+  max-width: 243px;
+}
+
+.clarity__spark {
+  width: 33px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  margin-top: 2px;
+}
+
+.clarity__spark--flip {
+  transform: scaleX(-1);
+}
+
+.clarity__labels {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 30px;
+  margin-bottom: 10px;
+}
+
+.clarity__label {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 21px;
+  flex: 1;
+  text-align: center;
+}
+
+.clarity__label--before { color: #E8E8E8; }
+.clarity__label--after  { color: #FFFFFF; }
+
+.clarity__badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Делим пространство на две абсолютно равные колонки */
+  justify-items: center;         /* Центрируем каждую плашку внутри её колонки */
+  padding-inline: 30px;
+  margin-bottom: 16px;
+}
+
+.clarity__badge {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  padding: 8px 22px;
+  border-radius: 17px;
+}
+
+.clarity__badge--before {
+  background: #10121E;
+  border: 1px solid #1F202F;
+  color: #E8E8E8;
+}
+
+.clarity__badge--after {
+  background: #151232;
+  border: 1px solid #251F4D;
+  color: #DDCCFF;
+}
+
+.clarity__comparison {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  padding-inline: 16px;
+  overflow: visible; /* РАЗРЕШАЕМ ВЫЛЕТ СВЕЧЕНИЯ */
+}
+
+.clarity__before {
+  flex: 1;
+  background-color: #0A0B16;
+  border-radius: 32px 0px 0px 32px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 12px;
+  min-height: 580px;
+}
+
+.clarity__before-content {
+  width: 100%;
+  height: auto;
+  max-width: 130px;
+  object-fit: contain;
+  display: block;
+}
+
+.clarity__center-arrow {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  left: 48%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.clarity__after {
+  flex: 1;
+  background-image: url('assets/if ideas.svg');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  box-shadow: -11px 0px 48.1px 2px #282A86; /* Точное свечение из Figma */
+  border-radius: 0px 32px 32px 0px; /* Оставляем скругления только с правой стороны для бесшовного стыка */
+  padding: 34px 16px 28px 24px; 
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; 
+  min-height: 580px;
+}
+
+/* Псевдоэлемент .clarity__after::before полностью удалён, чтобы эффекты не накладывались друг на друга */
+
+.after__app-title {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.after__ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  font-family: var(--ff-inter);
+  font-size: 11px;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin-bottom: 14px;
+  width: fit-content;
+  position: relative;
+  z-index: 2;
+}
+
+.after__desc {
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.after__sep {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #291C76 0%, #292D7E 50%, #11153B 100%);
+  border-radius: 52px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.after__sep--bottom {
+  background: linear-gradient(90deg, #0C102D 0%, #352776 50%, #11153B 100%);
+  margin-top: 6px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.after__cap-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.after__cap-label {
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 10.5px;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+}
+
+.after__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.after__feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-block: 6px;
+}
+
+.after__feat-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  display: block;
+}
+
+.after__feat span {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 22px;
+  letter-spacing: 0.03em;
+  color: var(--clr-after-text);
+}
+
+.after__goal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.after__goal-title {
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 22px;
+  letter-spacing: 0.03em;
+  color: #E7E5EB;
+}
+
+.after__goal-body {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  color: var(--clr-after-text);
+}
+
+/* ==============================================
+   4. FEATURES
+   ============================================== */
+.features {
+  background: #000000;
+  padding-inline: 30px;
   padding-block: 40px 56px;
 }
 
-/* ── Section header ── */
 .features__header {
   text-align: center;
   margin-bottom: 24px;
@@ -270,42 +635,35 @@ img {
 .features__title {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 12px;
   font-family: var(--ff-inter);
   font-weight: 600;
   font-size: 22px;
-  line-height: 1.23;
-  color: var(--clr-text);
+  line-height: 27px;
+  color: #FFFFFF;
 }
 
 .features__fire {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 31px;
   display: inline-block;
   vertical-align: middle;
 }
 
-/* ── Cards grid ──
-   2-column layout that mimics the masonry heights in the screenshot.
-   Left column is taller on row 1 (Card 1 vs Card 2),
-   Right column is taller on row 2 (Card 3 vs Card 4 is shorter).
-   We achieve this with a CSS Grid that has equal-width cols
-   and lets each card control its own height via content.
-   Cards in the same row align to the taller sibling naturally.
-   To exactly match the Figma "staggered" look we use
-   align-items: start so cards are NOT stretched.
-*/
 .features__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
+  display: flex;
   gap: var(--gap);
   align-items: start;
 }
 
-/* ==============================================
-   FEATURE CARDS — shared base
-   ============================================== */
+.features__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
 .card {
   background: linear-gradient(149.98deg, var(--clr-card-start) 0.17%, var(--clr-card-end) 99.83%);
   border: 0.5px solid var(--clr-card-border);
@@ -315,19 +673,13 @@ img {
   flex-direction: column;
 }
 
-/* ── Card variant: icon at top (no cover image) ── */
 .card--icon-top {
   padding: 18px 14px 16px;
 }
 
-/* ── Card variant: cover image at top ── */
-.card--cover-top {
-  /* No padding on the card itself — the image bleeds to edges */
-}
-
 .card__cover {
   width: 100%;
-  aspect-ratio: 145 / 98; /* matches Figma 145.48 × 98.38 */
+  aspect-ratio: 145 / 98;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -340,7 +692,6 @@ img {
   border-radius: 14px 14px 0 0;
 }
 
-/* Content area inside cover cards */
 .card__content {
   padding: 14px 14px 16px;
   display: flex;
@@ -348,7 +699,6 @@ img {
   flex: 1;
 }
 
-/* ── Card icon ── */
 .card__icon-wrap {
   margin-bottom: 14px;
 }
@@ -356,11 +706,9 @@ img {
 .card__icon {
   width: 28px;
   height: 28px;
-  /* Force white if SVG uses currentColor / black fill */
   filter: brightness(0) invert(1);
 }
 
-/* ── Card title ── */
 .card__title {
   font-family: var(--ff-segoe);
   font-weight: 600;
@@ -371,12 +719,8 @@ img {
   margin-bottom: 8px;
 }
 
-/* Bump font-size for icon-top cards (Figma shows 15px there) */
-.card--icon-top .card__title {
-  font-size: 15px;
-}
+.card--icon-top .card__title { font-size: 15px; }
 
-/* ── Card body text ── */
 .card__body {
   font-family: var(--ff-segoe);
   font-weight: 600;
@@ -387,19 +731,17 @@ img {
   flex: 1;
 }
 
-/* body text inside card--cover-top cards (lighter weight, matches Figma 500) */
 .card--cover-top .card__body {
   font-family: var(--ff-inter);
   font-weight: 500;
 }
 
-/* ── Card stats row ── */
 .card__stats {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: space-between;
+  width: 100%;
   margin-top: 14px;
-  padding-top: 0;
 }
 
 .card__stat {
@@ -409,7 +751,6 @@ img {
   font-family: 'Roboto', var(--ff-inter), sans-serif;
   font-size: 11px;
   font-weight: 400;
-  line-height: 1.18;
   letter-spacing: 0.04em;
   color: var(--clr-text);
 }
@@ -421,43 +762,136 @@ img {
 }
 
 /* ==============================================
-   REDUCED MOTION
+   5. EARLY ACCESS
+   ============================================== */
+.early {
+  background: linear-gradient(180deg, #000000 0%, #090519 100%);
+  padding-inline: 30px;
+  padding-block: 10px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.early__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.early__eyebrow-text {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  letter-spacing: 0.08em;
+  color: #AD92F5;
+}
+
+.early_deco {
+  width: 18px;
+  height: 19px;
+}
+/* Селектор .early__deco--flip полностью удалён */
+
+.early__title {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  max-width: 255px;
+  margin-bottom: 16px;
+}
+
+.early__sub {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 9.5px;
+  line-height: 17px;
+  text-align: center;
+  color: #D7D1E5;
+  max-width: 207px;
+  margin-bottom: 28px;
+}
+
+.early__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.early__btn {
+  width: 100%;
+  max-width: 280px;
+  align-self: center;
+  height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--ff-inter);
+  font-weight: 600;
+  font-size: 11.5px;
+  line-height: 14px;
+  text-align: center;
+  color: #FFFFFF;
+  background: linear-gradient(360deg, #6751F3 0%, #866CE6 104.17%);
+  border: 0.5px solid #FFFFFF;
+  border-radius: 24.5px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.early__btn:hover   { opacity: 0.9; }
+.early__btn:active { transform: scale(0.98); }
+
+.early__trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 11px;
+  text-align: center;
+  color: #B2AEC3;
+}
+
+/* ==============================================
+   REDUCED MOTION & RESPONSIVE
    ============================================== */
 @media (prefers-reduced-motion: reduce) {
-  lottie-player {
-    display: none;
-  }
+  lottie-player { display: none !important; }
 
-  /* Show a static fallback image instead */
   .hero__lottie-wrap::after {
     content: '';
     display: block;
     width: 115px;
     height: 162px;
-    background: url('./assets/logo-fallback.png') center / contain no-repeat;
+    background: url('assets/logo-fallback.png') center / contain no-repeat;
   }
 
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-/* ==============================================
-   RESPONSIVE — wider screens
-   ============================================== */
 @media (min-width: 481px) {
   body {
-    /* On tablet/desktop, show the phone-frame centred */
     background: #0a0515;
     display: flex;
     align-items: flex-start;
     justify-content: center;
   }
 
-  /* The inner page keeps the 393px mobile feel */
   body > section {
     max-width: 393px;
     width: 393px;
